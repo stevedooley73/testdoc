@@ -9,7 +9,7 @@
             name="description"
             content="Documentation for the Kittn API"
         >
-    <title>API Reference</title>
+    <title>API Reference for CSB Folks</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -316,22 +316,31 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#data-dictionary" class="toc-h1 toc-link" data-title="Data Dictionary">Data Dictionary</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#area-characteristics" class="toc-h2 toc-link" data-title="Area Characteristics">Area Characteristics</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#business-operations" class="toc-h2 toc-link" data-title="Business Operations">Business Operations</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#crime" class="toc-h2 toc-link" data-title="Crime">Crime</a>
+                  </li>
+                  <li>
+                    <a href="#legal-environment" class="toc-h2 toc-link" data-title="Legal Environment">Legal Environment</a>
+                  </li>
+                  <li>
+                    <a href="#past-issues" class="toc-h2 toc-link" data-title="Past Issues">Past Issues</a>
+                  </li>
+                  <li>
+                    <a href="#proximity" class="toc-h2 toc-link" data-title="Proximity">Proximity</a>
+                  </li>
+                  <li>
+                    <a href="#sentiment" class="toc-h2 toc-link" data-title="Sentiment">Sentiment</a>
+                  </li>
+                  <li>
+                    <a href="#social-security" class="toc-h2 toc-link" data-title="Social Security">Social Security</a>
                   </li>
               </ul>
           </li>
@@ -347,183 +356,1221 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='data-dictionary'>Data Dictionary</h1><h2 id='area-characteristics'>Area Characteristics</h2>
+<p>Here are the amazing features from Area Characteristics.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>Crowded housing percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% occupied housing units with more people than rooms</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Disability percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% people in county with a disability</td>
+</tr>
+<tr>
+<td>Institutionalized housing percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% people in county residing in institutionalized group quarters</td>
+</tr>
+<tr>
+<td>Multifamily dwelling percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% of housing in structures with &gt;=10 units</td>
+</tr>
+<tr>
+<td>Mobile home percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% of housing in mobile homes</td>
+</tr>
+<tr>
+<td>Car-free household percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% households with no vehicles</td>
+</tr>
+<tr>
+<td>Elderly percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% people in county aged 65+</td>
+</tr>
+<tr>
+<td>Single parent percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% single parent households with children under 18 in county</td>
+</tr>
+<tr>
+<td>Unemployment percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% people in county who are unemployed</td>
+</tr>
+<tr>
+<td>Youth percentage</td>
+<td>10</td>
+<td>FIPS</td>
+<td>percentage</td>
+<td>% people in county aged 17 and younger</td>
+</tr>
+<tr>
+<td>Alcohol related deaths percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population that dies from alcohol.</td>
+</tr>
+<tr>
+<td>Healthcare cost index</td>
+<td>10</td>
+<td>County</td>
+<td>dollars</td>
+<td>Average healthcare costs in county.</td>
+</tr>
+<tr>
+<td>Children in Poverty percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of children in poverty.</td>
+</tr>
+<tr>
+<td>Average commute time</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>minutes</td>
+<td>Mean commute time (minutes) in CDP.</td>
+</tr>
+<tr>
+<td>Poverty index (median income)</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>dollars</td>
+<td>Median income in CDP.</td>
+</tr>
+<tr>
+<td>Median property value</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>dollars</td>
+<td>Median property value in CDP.</td>
+</tr>
+<tr>
+<td>Motor vehicle related death rate</td>
+<td>10</td>
+<td>County</td>
+<td>per 100k population</td>
+<td>Number of MV (motor vehicle) deaths</td>
+</tr>
+<tr>
+<td>Obese adult percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population that are obese</td>
+</tr>
+<tr>
+<td>Tobacco use percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population that smokes</td>
+</tr>
+<tr>
+<td>Access to exercise percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population with access to exercise opportunities.</td>
+</tr>
+<tr>
+<td>Excessive time commuting</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>percentage</td>
+<td>Percent of population that take over 45 mins to commute to work</td>
+</tr>
+<tr>
+<td>Drivers per capita percentage</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>percentage</td>
+<td>Percent of population that commutes by vehicle</td>
+</tr>
+<tr>
+<td>Excessive drinking percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population that drink heavily</td>
+</tr>
+<tr>
+<td>High School Graduation percentage</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>percentage</td>
+<td>Percent of population that graduated high school</td>
+</tr>
+<tr>
+<td>Poor health percentage</td>
+<td>10</td>
+<td>County</td>
+<td>percentage</td>
+<td>Percent of population that have poor or fair health</td>
+</tr>
+<tr>
+<td>Poverty percentage</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>percentage</td>
+<td>Percent of population that are in poverty</td>
+</tr>
+<tr>
+<td>Uninsured percentage</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>percentage</td>
+<td>Percent of population that are uninsured</td>
+</tr>
+<tr>
+<td>Healthcare professional percentage</td>
+<td>10</td>
+<td>County</td>
+<td>per 100k population</td>
+<td>Number of primary care physicians</td>
+</tr>
+<tr>
+<td>Premature DeathYears lost before age 75</td>
+<td>10</td>
+<td>County</td>
+<td>years per 100k population</td>
+<td>years of potential life lost/premature mortality rate</td>
+</tr>
+<tr>
+<td>Property to income ratio</td>
+<td>10</td>
+<td>CDP (Census Designated Place)</td>
+<td>ratio</td>
+<td>Ratio of median_property_value to average income.</td>
+</tr>
+<tr>
+<td>Acres burned, 3 year</td>
+<td>4</td>
+<td>Zipcode</td>
+<td>count</td>
+<td>sum of acreage burned in &quot;Wildland or Vegetation&quot; fire incidents within zipcode for preceding 3 years</td>
+</tr>
+<tr>
+<td>Est. fire content loss percap, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(sum of estimated contents loss amounts for fire-related incidents within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year) Note: estimated loss ammount recorded by fire department</td>
+</tr>
+<tr>
+<td>EMS incidents per cap, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate (per zipcode population)</td>
+<td>(sum of emergency medical service incdents (related to fire incidents) within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Firefighter Fatalities, 3 year</td>
+<td>2</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(Sum of Firefighter deaths (related to fire incidents) within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Firefighter Injuries, 3 year</td>
+<td>4</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(sum of Firefighter injuries (related to fire incidents) within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Exposure to hazardous materials, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>count averaged over 3 years</td>
+<td>(Count of &quot;hazardous material&quot; fire incidents within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Fire related incidents, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>count averaged over 3 years</td>
+<td>(sum of fire-related incidents within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Civilian fire deaths, 3 year</td>
+<td>4</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(sum of Civilian deaths (related to fire incidents) within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Civilian fire injuries, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(sum of Civilian injuries (related to fire incidents) within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year)</td>
+</tr>
+<tr>
+<td>Est. fire property loss percap, 3 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>(sum of estimated property loss amounts for fire-related incidents within zipcode for preceding 3 years) / (zipcode&#39;s population in the latest year) Note: estimated loss ammount recorded by fire department</td>
+</tr>
+<tr>
+<td>Wildfire incidents, 3 year</td>
+<td>4</td>
+<td>Zipcode</td>
+<td>count averaged over 3 years</td>
+<td>Count of &quot;Wildland or Vegetation&quot; fire incidents within zipcode for preceding 3 years</td>
 </tr>
 </tbody></table>
+<h2 id='business-operations'>Business Operations</h2>
+<p>Here are the amazing features from Business Operations</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>Web Visibility</td>
+<td>9</td>
+<td>Website</td>
+<td>count</td>
+<td>Number of external websites linking into the given company website.</td>
+</tr>
+<tr>
+<td>Web Traffic</td>
+<td>4</td>
+<td>Website</td>
+<td>per million views</td>
+<td>Number of pageviews generated for the given company website.</td>
+</tr>
+<tr>
+<td>Web Popularity</td>
+<td>10</td>
+<td>Website</td>
+<td>count</td>
+<td>Overall popularity of the given company website.</td>
+</tr>
+<tr>
+<td>Commercial driving registration on file</td>
+<td>4</td>
+<td>Business</td>
+<td>days</td>
+<td>Number of days in operation / since registration.</td>
+</tr>
+<tr>
+<td>Drivers on file</td>
+<td>4</td>
+<td>Business</td>
+<td>count</td>
+<td>Number of drivers employed.</td>
+</tr>
+<tr>
+<td>Vehicle mileage on file</td>
+<td>4</td>
+<td>Business</td>
+<td>count</td>
+<td>Number of miles driven.</td>
+</tr>
+<tr>
+<td>Fleet in operation</td>
+<td>4</td>
+<td>Business</td>
+<td>count</td>
+<td>Number of vehicles in operation.</td>
+</tr>
+<tr>
+<td>Average number of open hours</td>
+<td>4</td>
+<td>Business</td>
+<td>hours</td>
+<td>Store opening hours per day.</td>
+</tr>
+<tr>
+<td>Consumer Rating</td>
+<td>5</td>
+<td>Business</td>
+<td>1-5 rating</td>
+<td>contains the place&#39;s rating, from 1.0 to 5.0, based on aggregated user reviews.</td>
+</tr>
+<tr>
+<td>Hours of operation: Open late on weekdays</td>
+<td>2</td>
+<td>Business</td>
+<td>boolean</td>
+<td>If the place closes between 10pm and 5am sun - thurs</td>
+</tr>
+<tr>
+<td>Hours of operation: Open late on weekends</td>
+<td>2</td>
+<td>Business</td>
+<td>boolean</td>
+<td>If the place closes between 10pm and 5am fri - sat</td>
+</tr>
+<tr>
+<td>Hours of Operation: Open 24 hours</td>
+<td>2</td>
+<td>Business</td>
+<td>boolean</td>
+<td>If the place is open 24/7</td>
+</tr>
+<tr>
+<td>Hours of operation: Open weekends</td>
+<td>2</td>
+<td>Business</td>
+<td>boolean</td>
+<td>If the place is open during weekend</td>
+</tr>
+<tr>
+<td>In-house web sophistication</td>
+<td>4</td>
+<td>Website</td>
+<td>ratio</td>
+<td>Number of paid technology platforms /  Number of unique technologies detected</td>
+</tr>
+<tr>
+<td>Webfront technical complexity</td>
+<td>7</td>
+<td>Website</td>
+<td>count</td>
+<td>Number of unique technologies detected on website.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='crime'>Crime</h2>
+<p>Here are the amazing features from Crime</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>Aggravated assault crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of aggravated assaults reported</td>
+</tr>
+<tr>
+<td>Arson crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of arson incidents reported</td>
+</tr>
+<tr>
+<td>Burglary crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of burglary incidents reported</td>
+</tr>
+<tr>
+<td>Proportion of female officers</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of female police officers</td>
+</tr>
+<tr>
+<td>Homicide crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of homicide incidents reported</td>
+</tr>
+<tr>
+<td>Larceny crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of larceny incidents reported</td>
+</tr>
+<tr>
+<td>Proportion of male officers</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of male officers</td>
+</tr>
+<tr>
+<td>Motor vehicle theft crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of motor theft incidents reported</td>
+</tr>
+<tr>
+<td>Property damage crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of property crime incidents reported</td>
+</tr>
+<tr>
+<td>Sexual Assault crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of reported rape incidents</td>
+</tr>
+<tr>
+<td>Robbery crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of robberies reported</td>
+</tr>
+<tr>
+<td>Violent crime rate</td>
+<td>10</td>
+<td>ORI (station) -&gt; County</td>
+<td>per 100k population</td>
+<td>Number of violent crime incidents reported </td>
+</tr>
+</tbody></table>
+<h2 id='legal-environment'>Legal Environment</h2>
+<p>Here are the amazing features from Legal Environment</p>
+
+<table><thead>
+<tr>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Litigation Keyword Click Per Day</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>average number per day</td>
+<td>average maximum number of clicks per day for exact match on litigation keywords</td>
+</tr>
+<tr>
+<td>Litigation Keyword Ad Cost</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>average dollar value per click</td>
+<td>average maximum cost per click (CPC) paid for exact match on litigation keywords</td>
+</tr>
+<tr>
+<td>Litigation Keyword Ad Ranking</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>average position/rank</td>
+<td>average maximum position (Ad Ranking) for exact match on litigation keywords</td>
+</tr>
+<tr>
+<td>Litigation Keyword Total Spend</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>average dollar value per day</td>
+<td>average maximum total cost per day for exact match on litigation keywords</td>
+</tr>
+<tr>
+<td>Legal Keyword Interest</td>
+<td>10</td>
+<td>Metro Area -&gt; FIPS</td>
+<td>average normalized 0 - 100 interest</td>
+<td>average legal keyword interest in zip code (search engine)</td>
+</tr>
+<tr>
+<td>Litigation Keyword Interest</td>
+<td>10</td>
+<td>Metro Area -&gt; FIPS</td>
+<td>average normalized 0 - 100 interest</td>
+<td>average litigation keyword interest in zip code (search engine)</td>
+</tr>
+<tr>
+<td>Ratio of Lawyer Wages to Household Income</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>ratio</td>
+<td>Ratio of lawyer annual median wage to annual median household income</td>
+</tr>
+<tr>
+<td>Lawyer Density</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita</td>
+<td>Number of lawyers per capita</td>
+</tr>
+<tr>
+<td>Number of Lawyers Per 1,000 Jobs</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per 1k jobs</td>
+<td>Number of laywer jobs per 1,000 jobs</td>
+</tr>
+</tbody></table>
+<h2 id='past-issues'>Past Issues</h2>
+<p>Here are the amazing features from Past Issues</p>
+
+<table><thead>
+<tr>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Prior BASIC violations</td>
+<td>4</td>
+<td>Business</td>
+<td>count per 10k miles</td>
+<td>Number of BASIC (related to unsafe, alcohol, etc) violations / number of miles driven</td>
+</tr>
+<tr>
+<td>Prior vehicle crashes, 2 year</td>
+<td>2</td>
+<td>Business</td>
+<td>count averaged over last 2 years</td>
+<td>Number of crashes / total number of miles driven (in past 2 years) </td>
+</tr>
+<tr>
+<td>Prior fatal motor vehicle accidents, 2 year</td>
+<td>2</td>
+<td>Business</td>
+<td>count averaged over last 2 years</td>
+<td>Number of fatalities / total number of miles driven (in past 2 years) </td>
+</tr>
+<tr>
+<td>Prior hazardous materials violations</td>
+<td>2</td>
+<td>Business</td>
+<td>count per 10k miles</td>
+<td>Number of Hazardous OOS violations / number of miles driven</td>
+</tr>
+<tr>
+<td>Prior driver injuries</td>
+<td>2</td>
+<td>Business</td>
+<td>count averaged over last 2 years</td>
+<td>Number of injuries / total number of miles driven (in past 2 years) </td>
+</tr>
+<tr>
+<td>Prior vehicle inspections</td>
+<td>4</td>
+<td>Business</td>
+<td>count per 10k miles</td>
+<td>Number of inspections / total number of miles driven</td>
+</tr>
+<tr>
+<td>Prior out-of-service records</td>
+<td>4</td>
+<td>Business</td>
+<td>count per 10k miles</td>
+<td>Number of Out-Of-Service violations / number of miles driven</td>
+</tr>
+<tr>
+<td>Prior motor vehicle violations</td>
+<td>4</td>
+<td>Business</td>
+<td>count</td>
+<td>Total number of violations found.</td>
+</tr>
+<tr>
+<td>Prior tow-away violations</td>
+<td>2</td>
+<td>Business</td>
+<td>count averaged over last 2 years</td>
+<td>Number of tows / total number of miles driven (in past 2 years) </td>
+</tr>
+<tr>
+<td>Prior high-severity traffic violations</td>
+<td>4</td>
+<td>Business</td>
+<td>count per 10k miles</td>
+<td>Sum of the violation severities (0-12) / number of miles driven</td>
+</tr>
+<tr>
+<td>Workplace safety inspections, 1 year</td>
+<td></td>
+<td>Business</td>
+<td>count</td>
+<td>Number of inspections performed in past 1 year.</td>
+</tr>
+<tr>
+<td>Workplace safety inspections, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>Number of inspections performed in past 3 years.</td>
+</tr>
+<tr>
+<td>Serious workplace safety issues percentage, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>percentage</td>
+<td>Percentage of inspections deemed serious in past 3 years.</td>
+</tr>
+<tr>
+<td>Workplace safety fines, 1 years</td>
+<td></td>
+<td>Business</td>
+<td>aggregate dollar value</td>
+<td>Total cost of penalties assigned in past 1 year.</td>
+</tr>
+<tr>
+<td>Workplace safety fines, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>aggregate dollar value</td>
+<td>Total cost of penalties assigned in past 3 years.</td>
+</tr>
+<tr>
+<td>Hazardous materials issues, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>Unique hazardous materials found in inspection in past 3 years.</td>
+</tr>
+<tr>
+<td>Wage practice investigations, 1 year</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>count of WHD cases for company within preceding year</td>
+</tr>
+<tr>
+<td>Wage practice investigations, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>count of WHD cases for company within preceding 3 years</td>
+</tr>
+<tr>
+<td>Backwage violations, 1 year</td>
+<td>2</td>
+<td>Business</td>
+<td>dollars</td>
+<td>sum of WHD backwage violation amounts for company within preceding year</td>
+</tr>
+<tr>
+<td>Backwage violations, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>dollars</td>
+<td>sum of WHD backwage violation amounts for company within preceding 3 years</td>
+</tr>
+<tr>
+<td>Wage practice penalties, 1 year</td>
+<td>2</td>
+<td>Business</td>
+<td>dollars</td>
+<td>sum of WHD penalty amounts for company within preceding year</td>
+</tr>
+<tr>
+<td>Wage practice penalties, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>dollars</td>
+<td>sum of WHD penalty amounts for company within preceding 3 years</td>
+</tr>
+<tr>
+<td>Wage practice violations, 1 year</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>count of WHD violations for company within preceding year</td>
+</tr>
+<tr>
+<td>Wage practice violations, 3 years</td>
+<td>2</td>
+<td>Business</td>
+<td>count</td>
+<td>count of WHD violations for company within preceding 3 years</td>
+</tr>
+</tbody></table>
+<h2 id='proximity'>Proximity</h2>
+<p>Here are the amazing features from Proximity</p>
+
+<table><thead>
+<tr>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Proximity to emergency medical services</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to emergency medical services within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest emergency medical service</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest emergency medical service within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of emergency medical services nearby</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of emergency medical services within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to fire stations</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to fire stations within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest fire station</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest fire station within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of fire stations nearby</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of fire stations within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to gun retailers</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to gun retailers within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest gun retailer</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest gun retailer within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of gun retailers nearby</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of gun retailers within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to companies with hazardous chemicals</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to companies with hazardous chemicals within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest company with hazardous chemicals</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest company with hazardous chemicals within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of companies with hazardous chemicals nearby</td>
+<td>6</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of companies with hazardous chemicals within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to hospitals</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to hospitals within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest hospital</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest hospital within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of hospitals nearby</td>
+<td>6</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of hospitals within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to police stations</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to police stations within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest police station</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest police station within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of police stations nearby</td>
+<td>7</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of police stations within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest power plant</td>
+<td>9</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest power plant within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of power plants nearby</td>
+<td>5</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of power plants within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest public transit station</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest public transit station within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of public transit stations nearby</td>
+<td>4</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of public transit stations within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest school</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest school within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of schools nearby</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of schools within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Proximity to urgent care facilities</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Average distance to urgent care facilities within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest urgent care facility</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest urgent care facility within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of urgent care facilities nearby</td>
+<td>4</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of urgent care facilities within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Distance to closest place of worship</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>meters</td>
+<td>Distance to closest place of worship within a 5-mile radius</td>
+</tr>
+<tr>
+<td>Density of places of worship nearby</td>
+<td>10</td>
+<td>Latitude/Longitude</td>
+<td>count</td>
+<td>Number of places of worship within a 5-mile radius</td>
+</tr>
+</tbody></table>
+<h2 id='sentiment'>Sentiment</h2>
+<p>Here are the amazing features from Sentiment</p>
+
+<table><thead>
+<tr>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Ballot legislation activity</td>
+<td>5</td>
+<td>County</td>
+<td>count</td>
+<td>Ballot activity index</td>
+</tr>
+<tr>
+<td>Uniformity of voter opinions</td>
+<td>5</td>
+<td>County</td>
+<td>0-1 range</td>
+<td>Voting record inequality on approval and disapproval of ballot measures</td>
+</tr>
+<tr>
+<td>Voter Participation</td>
+<td>5</td>
+<td>County</td>
+<td>percentage</td>
+<td>Voter participation for statewide ballot measures within a county.</td>
+</tr>
+<tr>
+<td>Local sentiment: business-friendliness</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average business and consumer Support Interest Groups (SIGs) ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: conservative policies</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average conservative SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: drug rights</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average drug rights SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: education</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average education SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: environmental issues</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average environmental SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: foreign policy</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average foreign policy SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: gun rights</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average gun rights SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: immigration</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average immigration SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: liberal policies</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average liberal SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>Local sentiment: protected classes</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average labor unions, women&#39;s rights, disabilities, minorities, etc SIG ratings on local representatives</td>
+</tr>
+<tr>
+<td>State sentiment: business-friendliness</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average business and consumer Support Interest Groups (SIGs) ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: conservative policies</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average conservative SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: drug rights</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average drug rights SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: education</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average education SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: environmental issues</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average environmental SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: foreign policy</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average foreign policy SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: gun rights</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average gun rights SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: immigration</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average immigration SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: liberal policies</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average liberal SIG ratings on state representatives</td>
+</tr>
+<tr>
+<td>State sentiment: protected classes</td>
+<td>3</td>
+<td>Zipcode</td>
+<td>0-1 support rating, (average rating from Special Interest Groups (SIG))</td>
+<td>Average labor unions, women&#39;s rights, disabilities, minorities, etc SIG ratings on state representatives</td>
+</tr>
+</tbody></table>
+<h2 id='social-security'>Social Security</h2>
+<p>Here are the amazing features from Social Security</p>
+
+<table><thead>
+<tr>
+<th>External Name</th>
+<th>Bins</th>
+<th>native_resolution</th>
+<th>unit_of_measure</th>
+<th>External Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SSA benefits rate, 1 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita</td>
+<td>SSA Benefit amount per capita per $1K, in the past last year. Multiply by 1000 to get the actual dollar value</td>
+</tr>
+<tr>
+<td>SSA benefits rate, 3 years</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>SSA Benefit amount per capita per $1K, averaged over the last 3 years. Multiply by 1000 to get the actual dollar value</td>
+</tr>
+<tr>
+<td>Disabled worker employment rate, 1 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita</td>
+<td>Number of employed disabled workers per capita over the last year</td>
+</tr>
+<tr>
+<td>Disabled worker employment rate, 3 years</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>Number of employed disabled workers per capita averaged over the last 3 years</td>
+</tr>
+<tr>
+<td>Retired worker benefits rate, 1 year</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita</td>
+<td>Benefit amount given to retired workers per capita per $1K dollars in the last year. Multiply by 1000 to get the actual dollar value</td>
+</tr>
+<tr>
+<td>Retired worker benefits rate, 3 years</td>
+<td>10</td>
+<td>Zipcode</td>
+<td>rate per capita averaged over 3 years</td>
+<td>Benefit amount given to retired workers per capita per $1K dollars, averaged over the last 3 years. Multiply by 1000 to get the actual dollar value</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
