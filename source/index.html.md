@@ -180,17 +180,17 @@ run_date | request or policy effective date | string (yyyy-mm-dd) | optional | c
  "quote_id": "",
   "config": {},
   "run_date": "",
-  "query_by_features": ["Voter Participation","Litigation Keyword Ad Cost"]
+  "query_by_features": ["Web Traffic","Youth Percentage"]
 }
 ```
 
 ```json
 {
   "company": {},
- "quote_id": "",
+  "quote_id": "",
   "config": {},
   "run_date": "",
-  "query_string": "line_of_business in ['gl'] or feature_name in ['Prior vehicle crashes']"
+  "query_string": "line_of_business in ['gl'] or feature_name in ['Web Traffic']"
 }
 ```
 One of the following parameters must be provided to instruct the API which features to generate.
@@ -200,7 +200,7 @@ In the examples above, the `query_by_lob` was used for illustration, but any of 
 Request Field | Description | Type | Required | Default if Missing | Example
 --- | --- | --- | --- | --- | ---
 query_by_lob | query one or more lines of business, return all features within the lines of business queried | string |  |  | ["gl", "wc"]
-query_by_features | query one or more features, return the features queried | string |  |  | ["Voter Participation","Litigation Keyword Ad Cost"]
+query_by_features | query one or more features, return the features queried | string |  |  | ["Web Traffic","Youth Percentage"]
 query_string | query a combination of data sources, lines of business and individual features using Python and Pandas syntax, return all features included in the string | string |  |  | "line_of_business in ['gl'] or feature_name in ['Prior vehicle crashes']"
 
 
