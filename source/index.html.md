@@ -2,10 +2,7 @@
 title: API Reference for CSB Folks
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -22,6 +19,191 @@ meta:
   - name: description
     content: Documentation for the Kittn API
 ---
+  
+# Request Object
+> High-level structure of the API Request (values intentionally left blank)
+
+```json
+{
+  "company": {},
+  "quote_id": "",
+  "config": {},
+  "run_date": "",
+  "query_by_lob": []
+}
+```
+
+The API Request message is composed of the following sections:
+
+Section | Description | Required
+--- | --- | ---
+company | company information (json object) | Required
+quote_id | ID of quote (optional?) | Optional
+config | configuration dictionary (json object) | Required
+run_date | date to use when retrieving data (optional?) | Optional
+query method | one of three ways to retrieve results (by line-of-business illustrated) | Required
+
+Each of these sections are discussed in the sub-sections below.
+
+## Company
+> JSON Request with sample company/address (other sections intentionally left blank)
+
+```json
+{
+  "company": {
+    "name": "Acme Brick",
+    "address": {
+      "street": "123 main st",
+      "city": "san francisco",
+      "state": "ca",
+      "zipcode": "94111",
+      "country": "us",
+      "latitude": 37.542731,
+      "longitude": -122.3002869
+    },
+    "revenue": 1.5,
+    "naics": "11",
+    "website": "www.acmebrick.com",
+    "phone": "8001234567",
+    "employee_count": 25
+  },
+ "quote_id": "",
+  "config": {},
+  "run_date": "",
+  "query_by_lob": []
+}
+```
+
+The company section is a nested json dictionary with the following components:
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+name | name of the company | string | Required | | "acme brick"
+address | json dictionary of company address | json | Required | | (see table below)
+revenue | annual revenue of the most recent year (in millions), must be greater than 0 | float | Optional | 1.0 | 1.5
+naics | two-digit valid naics code | string | Optional | "99" | "11"
+website | website | string | Optional | | "www.acmebrick.com"
+phone | ten-digit phone number, no dash, space, or parenthesis | string | Optional | | "8001234567"
+employee count | total number of employees, must be greater than 0 | integer | Optional | 7 | 25
+
+The `address` element in the Company object is a json dictionary with the following components:
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+street | main physical street address | string | Required | | "123 main st"
+city | city | string | Required | | "san francisco"
+state | two-character state abbreviation | string | Required | | "ca"
+zipcode | five-digit zip code | string | Required | | "94111"
+country | two-character country code | string | Required | | "us"
+latitude | latitude of the company address | float | Optional | | 37.542731
+longitude | longitude of the company address | float | Optional | | -122.3002869
+
+## Quote ID
+> JSON Request with sample quote_id (other sections intentionally left blank)
+
+```json
+{
+  "company": {},
+ "quote_id": "abc123def456",
+  "config": {},
+  "run_date": "",
+  "query_by_lob": []
+}
+```
+
+The `quote_id` attribute is the unique request ID or policy ID.
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+quote_id | unique request ID or policy ID | string | optional | randomly generated string| "abc123def456"
+
+
+## Configuration Options
+> JSON Request with sample configuration options (other sections intentionally left blank)
+
+```json
+{
+  "company": {},
+  "quote_id": "",
+  "config": {
+    "imputed_data": true,
+    "risk_factors": true,
+    "peer_comparison": false
+  },
+  "run_date": "2021-01-01",
+  "query_by_lob": []
+}
+```
+The configuration section is a dictionary that control how the API is processed.
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+imputed_data | if true, return imputed data if cannot find raw data; if false, return null if cannot find raw data | boolean | Required | | true, false
+risk_factors | response includes risk factor if true | boolean | Required | | true, false
+peer_comparison | risk factor includes peer comparison if true; if this is true and risk_factors is false, then it would still show both risk_factors and peer_comparison | boolean | Required | | true, false
+
+## Run Date
+> JSON Request with sample run_date (other sections intentionally left blank)
+
+```json
+{
+  "company": {},
+  "quote_id": "",
+  "config": {},
+  "run_date": "2021-01-01",
+  "query_by_lob": []
+}
+```
+
+The `run_date` corresponds to either the date of the API request, or to a policy effective date
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+run_date | request or policy effective date | string (yyyy-mm-dd) | optional | current date | "2021-01-01"
+
+## Query methods
+> JSON Request with different sample query methods (other sections intentionally left blank)
+
+```json
+{
+  "company": {},
+ "quote_id": "",
+  "config": {},
+  "run_date": "",
+  "query_by_lob": ["gl", "wc"]
+}
+```
+
+```json
+{
+  "company": {},
+ "quote_id": "",
+  "config": {},
+  "run_date": "",
+  "query_by_features": ["Voter Participation","Litigation Keyword Ad Cost"]
+}
+```
+
+```json
+{
+  "company": {},
+ "quote_id": "",
+  "config": {},
+  "run_date": "",
+  "query_string": "line_of_business in ['gl'] or feature_name in ['Prior vehicle crashes']"
+}
+```
+One of the following parameters must be provided to instruct the API which features to generate.
+
+In the examples above, the `query_by_lob` was used for illustration, but any of these can be used in the API Request.
+
+Request Field | Description | Type | Required | Default if Missing | Example
+--- | --- | --- | --- | --- | ---
+query_by_lob | query one or more lines of business, return all features within the lines of business queried | string |  |  | ["gl", "wc"]
+query_by_features | query one or more features, return the features queried | string |  |  | ["Voter Participation","Litigation Keyword Ad Cost"]
+query_string | query a combination of data sources, lines of business and individual features using Python and Pandas syntax, return all features included in the string | string |  |  | "line_of_business in ['gl'] or feature_name in ['Prior vehicle crashes']"
+
+
 # Data Dictionary
 
 ## Area Characteristics

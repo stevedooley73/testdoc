@@ -6,6 +6,7 @@ WORKDIR /srv/slate
 #VOLUME /srv/slate/source
 
 COPY ./source/index.html.md /srv/slate/source/
+COPY ./source/includes/_errors.md /srv/slate/source/includes/
 EXPOSE 4567
 
 #COPY Gemfile .
