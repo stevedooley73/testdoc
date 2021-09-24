@@ -7,6 +7,9 @@ WORKDIR /srv/slate
 
 COPY ./source/index.html.md /srv/slate/source/
 COPY ./source/includes/_errors.md /srv/slate/source/includes/
+COPY ./source/stylesheets/_variables.scss /srv/slate/source/stylesheets/
+COPY ./source/images/logo.png /srv/slate/source/images/
+
 EXPOSE 4567
 
 #COPY Gemfile .

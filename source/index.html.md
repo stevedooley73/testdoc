@@ -19,7 +19,10 @@ meta:
   - name: description
     content: Documentation for the Kittn API
 ---
-  
+
+# About the Assess API
+See beyond the obvious and gain more insights by revealing relevant business information, allowing you to quickly differentiate good businesses from bad ones. Assess providers users with curated datasets in the form of risk factors that allow you to gain insights fast and efficiently. Using external data to supplement your analysis may help you find correlation between external factors you didn’t know about and drivers of loss
+
 # Request Object
 > High-level structure of the API Request (values intentionally left blank)
 
