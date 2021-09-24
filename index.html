@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,16 +305,33 @@
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#request-object" class="toc-h1 toc-link" data-title="Request Object">Request Object</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#company" class="toc-h2 toc-link" data-title="Company">Company</a>
+                  </li>
+                  <li>
+                    <a href="#quote-id" class="toc-h2 toc-link" data-title="Quote ID">Quote ID</a>
+                  </li>
+                  <li>
+                    <a href="#configuration-options" class="toc-h2 toc-link" data-title="Configuration Options">Configuration Options</a>
+                  </li>
+                  <li>
+                    <a href="#run-date" class="toc-h2 toc-link" data-title="Run Date">Run Date</a>
+                  </li>
+                  <li>
+                    <a href="#query-methods" class="toc-h2 toc-link" data-title="Query methods">Query methods</a>
+                  </li>
+              </ul>
+          </li>
           <li>
             <a href="#data-dictionary" class="toc-h1 toc-link" data-title="Data Dictionary">Data Dictionary</a>
               <ul class="toc-list-h2">
@@ -356,7 +373,407 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='data-dictionary'>Data Dictionary</h1><h2 id='area-characteristics'>Area Characteristics</h2>
+        <h1 id='request-object'>Request Object</h1>
+<blockquote>
+<p>High-level structure of the API Request (values intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The API Request message is composed of the following sections:</p>
+
+<table><thead>
+<tr>
+<th>Section</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>company</td>
+<td>company information (json object)</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>quote_id</td>
+<td>ID of quote (optional?)</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>config</td>
+<td>configuration dictionary (json object)</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>run_date</td>
+<td>date to use when retrieving data (optional?)</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>query method</td>
+<td>one of three ways to retrieve results (by line-of-business illustrated)</td>
+<td>Required</td>
+</tr>
+</tbody></table>
+
+<p>Each of these sections are discussed in the sub-sections below.</p>
+<h2 id='company'>Company</h2>
+<blockquote>
+<p>JSON Request with sample company/address (other sections intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acme Brick"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 main st"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"san francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94111"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">37.542731</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.3002869</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"naics"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.acmebrick.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8001234567"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"employee_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+ </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The company section is a nested json dictionary with the following components:</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>name of the company</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;acme brick&quot;</td>
+</tr>
+<tr>
+<td>address</td>
+<td>json dictionary of company address</td>
+<td>json</td>
+<td>Required</td>
+<td></td>
+<td>(see table below)</td>
+</tr>
+<tr>
+<td>revenue</td>
+<td>annual revenue of the most recent year (in millions), must be greater than 0</td>
+<td>float</td>
+<td>Optional</td>
+<td>1.0</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>naics</td>
+<td>two-digit valid naics code</td>
+<td>string</td>
+<td>Optional</td>
+<td>&quot;99&quot;</td>
+<td>&quot;11&quot;</td>
+</tr>
+<tr>
+<td>website</td>
+<td>website</td>
+<td>string</td>
+<td>Optional</td>
+<td></td>
+<td>&quot;www.acmebrick.com&quot;</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>ten-digit phone number, no dash, space, or parenthesis</td>
+<td>string</td>
+<td>Optional</td>
+<td></td>
+<td>&quot;8001234567&quot;</td>
+</tr>
+<tr>
+<td>employee count</td>
+<td>total number of employees, must be greater than 0</td>
+<td>integer</td>
+<td>Optional</td>
+<td>7</td>
+<td>25</td>
+</tr>
+</tbody></table>
+
+<p>The <code>address</code> element in the Company object is a json dictionary with the following components:</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>street</td>
+<td>main physical street address</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;123 main st&quot;</td>
+</tr>
+<tr>
+<td>city</td>
+<td>city</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;san francisco&quot;</td>
+</tr>
+<tr>
+<td>state</td>
+<td>two-character state abbreviation</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;ca&quot;</td>
+</tr>
+<tr>
+<td>zipcode</td>
+<td>five-digit zip code</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;94111&quot;</td>
+</tr>
+<tr>
+<td>country</td>
+<td>two-character country code</td>
+<td>string</td>
+<td>Required</td>
+<td></td>
+<td>&quot;us&quot;</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>latitude of the company address</td>
+<td>float</td>
+<td>Optional</td>
+<td></td>
+<td>37.542731</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>longitude of the company address</td>
+<td>float</td>
+<td>Optional</td>
+<td></td>
+<td>-122.3002869</td>
+</tr>
+</tbody></table>
+<h2 id='quote-id'>Quote ID</h2>
+<blockquote>
+<p>JSON Request with sample quote_id (other sections intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+ </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123def456"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The <code>quote_id</code> attribute is the unique request ID or policy ID.</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>quote_id</td>
+<td>unique request ID or policy ID</td>
+<td>string</td>
+<td>optional</td>
+<td>randomly generated string</td>
+<td>&quot;abc123def456&quot;</td>
+</tr>
+</tbody></table>
+<h2 id='configuration-options'>Configuration Options</h2>
+<blockquote>
+<p>JSON Request with sample configuration options (other sections intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"imputed_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"risk_factors"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"peer_comparison"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The configuration section is a dictionary that control how the API is processed.</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>imputed_data</td>
+<td>if true, return imputed data if cannot find raw data; if false, return null if cannot find raw data</td>
+<td>boolean</td>
+<td>Required</td>
+<td></td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>risk_factors</td>
+<td>response includes risk factor if true</td>
+<td>boolean</td>
+<td>Required</td>
+<td></td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>peer_comparison</td>
+<td>risk factor includes peer comparison if true; if this is true and risk_factors is false, then it would still show both risk_factors and peer_comparison</td>
+<td>boolean</td>
+<td>Required</td>
+<td></td>
+<td>true, false</td>
+</tr>
+</tbody></table>
+<h2 id='run-date'>Run Date</h2>
+<blockquote>
+<p>JSON Request with sample run_date (other sections intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The <code>run_date</code> corresponds to either the date of the API request, or to a policy effective date</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>run_date</td>
+<td>request or policy effective date</td>
+<td>string (yyyy-mm-dd)</td>
+<td>optional</td>
+<td>current date</td>
+<td>&quot;2021-01-01&quot;</td>
+</tr>
+</tbody></table>
+<h2 id='query-methods'>Query methods</h2>
+<blockquote>
+<p>JSON Request with different sample query methods (other sections intentionally left blank)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+ </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_lob"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"gl"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wc"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+ </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_by_features"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Voter Participation"</span><span class="p">,</span><span class="s2">"Litigation Keyword Ad Cost"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+ </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"run_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_of_business in ['gl'] or feature_name in ['Prior vehicle crashes']"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>One of the following parameters must be provided to instruct the API which features to generate.</p>
+
+<p>In the examples above, the <code>query_by_lob</code> was used for illustration, but any of these can be used in the API Request.</p>
+
+<table><thead>
+<tr>
+<th>Request Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default if Missing</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query_by_lob</td>
+<td>query one or more lines of business, return all features within the lines of business queried</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>[&quot;gl&quot;, &quot;wc&quot;]</td>
+</tr>
+<tr>
+<td>query_by_features</td>
+<td>query one or more features, return the features queried</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>[&quot;Voter Participation&quot;,&quot;Litigation Keyword Ad Cost&quot;]</td>
+</tr>
+<tr>
+<td>query_string</td>
+<td>query a combination of data sources, lines of business and individual features using Python and Pandas syntax, return all features included in the string</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>&quot;line_of_business in [&#39;gl&#39;] or feature_name in [&#39;Prior vehicle crashes&#39;]&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='data-dictionary'>Data Dictionary</h1><h2 id='area-characteristics'>Area Characteristics</h2>
 <p>Here are the amazing features from Area Characteristics.</p>
 
 <table><thead>
@@ -1574,11 +1991,7 @@
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The CSB API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -1587,58 +2000,19 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>500</td>
+<td>Internal Server Error</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Data Not Found</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
