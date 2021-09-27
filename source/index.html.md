@@ -208,10 +208,11 @@ query_string | query a combination of data sources, lines of business and indivi
 
 
 # Data Dictionary
+Assess' Risk Factors are pulled from a broad range of categories:
 
 ## Area Characteristics
 
-Here are the amazing features from Area Characteristics.
+Risk Factors from the "Area Characteristics" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -260,7 +261,7 @@ Wildfire incidents, 3 year | 4 | Zipcode | count averaged over 3 years | Count o
 
 ## Business Operations
 
-Here are the amazing features from Business Operations
+Risk Factors from the "Business Operations" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -283,7 +284,7 @@ Webfront technical complexity | 7 | Website | count | Number of unique technolog
 
 ## Crime
 
-Here are the amazing features from Crime
+Risk Factors from the "Crime" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -303,7 +304,7 @@ Violent crime rate | 10 | ORI (station) -> County | per 100k population | Number
 
 ## Legal Environment
 
-Here are the amazing features from Legal Environment
+Risk Factors from the "Legal Environment" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -320,7 +321,7 @@ Number of Lawyers Per 1,000 Jobs | 10 | Zipcode | rate per 1k jobs | Number of l
 
 ## Past Issues
 
-Here are the amazing features from Past Issues
+Risk Factors from the "Past Issues" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -352,7 +353,7 @@ Wage practice violations, 3 years | 2 | Business | count | count of WHD violatio
 
 ## Proximity
 
-Here are the amazing features from Proximity
+Risk Factors from the "Proximity" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -389,7 +390,7 @@ Density of places of worship nearby | 10 | Latitude/Longitude | count | Number o
 
 ## Sentiment
 
-Here are the amazing features from Sentiment
+Risk Factors from the "Sentiment" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
@@ -420,7 +421,7 @@ State sentiment: protected classes | 3 | Zipcode | 0-1 support rating, (average 
 
 ## Social Security
 
-Here are the amazing features from Social Security
+Risk Factors from the "Social Security" category:
 
 External Name | Bins | native_resolution | unit_of_measure | External Description
 ----------- | ----------- | ----------- | ----------- | -----------
